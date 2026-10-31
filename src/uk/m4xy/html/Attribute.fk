@@ -1,0 +1,2 @@
+// An element's attribute: href="/", or, without a value, one that's there or not, as disabled.
+type Attribute(name: String, value: Option<String>)

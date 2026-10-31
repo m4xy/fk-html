@@ -1,0 +1,76 @@
+// Building HTML, and writing it as text. markup { ... } and page { ... } give what a block adds, as
+// Tags' elements do; render writes it, escaping text and attribute values, and leaving out the end
+// tag of an element that can't have children, as br.
+module Htmls {
+  // What block adds, together.
+  markup<@E>(block: @Markup @E () -> Unit): Html = {
+    parts = collected(block)
+    when (parts) {
+      [one] -> one
+      else -> Fragment(parts)
+    }
+  }
+
+  // A whole document: the doctype, then what block adds, as markup { ... } does.
+  page<@E>(block: @Markup @E () -> Unit): String = "<!doctype html>" + render(markup(block))
+
+  // What block adds, in order.
+  collected<@E>(block: @Markup @E () -> Unit): List<Html> = {
+    var parts = []
+    Markup(add = (piece, resume) -> {
+      parts = parts + [piece]
+      resume(Unit)
+    }) { block() }
+    parts
+  }
+
+  // An element of tag, with the attributes, and what block adds in it.
+  @Markup element<@E>(
+    tag: String,
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = add(Element(tag, attributes, collected(block)))
+
+  // Text, escaped as it's written.
+  @Markup text(value: String): Unit = add(Text(value))
+
+  // HTML that's trusted, as it is: what another library wrote.
+  @Markup raw(html: String): Unit = add(Raw(html))
+
+  attribute(name: String, value: String): Attribute = Attribute(name, Some(value))
+
+  // An attribute that's there, without a value: disabled, checked.
+  flag(name: String): Attribute = Attribute(name, None)
+
+  // The element's classes, a space between each.
+  classes(names: List<String>): Attribute = attribute("class", names.joinToString(" "))
+
+  id(value: String): Attribute = attribute("id", value)
+
+  render(html: Html): String = when (html) {
+    Text(text) -> escaped(text, false)
+    Raw(written) -> written
+    Fragment(parts) -> parts.map { render(it) }.joinToString("")
+    Element(tag, attributes, children) -> {
+      opening = "<$tag" + attributes.map { a ->
+        " " + a.name + a.value.map { "=\"${escaped(it, true)}\"" }.getOrElse("")
+      }.joinToString("") + ">"
+      if (empty.contains(tag) && children.isEmpty()) opening
+      else opening + children.map { render(it) }.joinToString("") + "</$tag>"
+    }
+  }
+
+  // The elements that can't have children, which have no end tag.
+  private empty: List<String> = [
+    "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track",
+    "wbr",
+  ]
+
+  private escaped(text: String, quoted: Boolean): String = text.toList().map { c ->
+    if (c == '&') "&amp;"
+    else if (c == '<') "&lt;"
+    else if (c == '>') "&gt;"
+    else if (quoted && c == '"') "&quot;"
+    else c.toString()
+  }.joinToString("")
+}

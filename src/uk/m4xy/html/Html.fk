@@ -1,0 +1,8 @@
+// A piece of HTML: an element, with its attributes and what's in it; text, which is escaped as it's
+// written; HTML that's trusted, written as it is; or pieces, one after another.
+type Html {
+  Element(tag: String, attributes: List<Attribute>, children: List<Html>),
+  Text(text: String),
+  Raw(html: String),
+  Fragment(parts: List<Html>),
+}

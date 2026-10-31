@@ -1,0 +1,57 @@
+import uk.m4xy.fktests.api.Test
+import uk.m4xy.html.*
+import uk.m4xy.html.Htmls.*
+import uk.m4xy.html.Tags.*
+
+// Text is escaped, where it's text and where it's an attribute's value.
+@Test textIsEscaped() = assertEquals(
+  """<p title="&quot;5 &lt; 6&quot; &amp; so">a &lt;b&gt; &amp; c</p>""",
+  render(markup { p([attribute("title", "\"5 < 6\" & so")]) { text("a <b> & c") } }),
+)
+
+// An element nests what its block adds, in order.
+@Test elementsNest() = assertEquals(
+  """<ul class="plain menu"><li><a href="/">Home</a></li><li><a href="/about">About</a></li></ul>""",
+  render(markup {
+    ul([classes(["plain", "menu"])]) {
+      [("/", "Home"), ("/about", "About")].forEach { href, label ->
+        li { a(href) { text(label) } }
+      }
+    }
+  }),
+)
+
+// An element that can't have anything in it has no end tag; an attribute without a value is there.
+@Test emptyElementsAreLeftOpen() = assertEquals(
+  """<form><input type="checkbox" checked><br><img src="cat.png" alt="A cat"></form>""",
+  render(markup {
+    form {
+      input([attribute("type", "checkbox"), flag("checked")])
+      br()
+      img("cat.png", "A cat")
+    }
+  }),
+)
+
+// A page starts with its doctype; raw HTML is written as it is.
+@Test aPageIsADocument() = assertEquals(
+  "<!doctype html><html><head><title>Hi</title></head><body><b>made</b><p></p></body></html>",
+  page {
+    html {
+      head { title { text("Hi") } }
+      body {
+        raw("<b>made</b>")
+        p()
+      }
+    }
+  },
+)
+
+// Several pieces together are a fragment; pieces can be built as values too.
+@Test piecesAreValues() = {
+  assertEquals(Fragment([Text("a"), Text("b")]), markup {
+    text("a")
+    text("b")
+  })
+  assertEquals("<em>x</em>", render(Element("em", [], [Text("x")])))
+}

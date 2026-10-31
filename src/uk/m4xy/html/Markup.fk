@@ -1,0 +1,5 @@
+// What builds HTML as code runs: each piece added becomes the next child of the element it's added
+// in. Htmls.markup handles it, as each element of Tags does for what's in it.
+effect Markup {
+  add(html: Html): Unit
+}

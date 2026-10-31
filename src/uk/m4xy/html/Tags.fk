@@ -1,0 +1,323 @@
+import uk.m4xy.html.Htmls.*
+
+// An element for each tag, with its attributes, and what the block adds in it: div { p { text("hi") } },
+// ul([classes(["plain"])]) { li { text("one") } }. main is mainElement, as main is a program's.
+module Tags {
+  // A link to href.
+  @Markup a<@E>(
+    href: String,
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("a", [attribute("href", href)] + attributes, block)
+
+  // An image, from src, which alt says in words.
+  @Markup img(src: String, alt: String, attributes: List<Attribute> = []): Unit =
+    element("img", [attribute("src", src), attribute("alt", alt)] + attributes)
+
+  @Markup mainElement<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("main", attributes, block)
+
+  @Markup abbr<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("abbr", attributes, block)
+
+  @Markup article<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("article", attributes, block)
+
+  @Markup aside<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("aside", attributes, block)
+
+  @Markup b<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("b", attributes, block)
+
+  @Markup blockquote<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("blockquote", attributes, block)
+
+  @Markup body<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("body", attributes, block)
+
+  @Markup button<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("button", attributes, block)
+
+  @Markup caption<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("caption", attributes, block)
+
+  @Markup code<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("code", attributes, block)
+
+  @Markup dd<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("dd", attributes, block)
+
+  @Markup details<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("details", attributes, block)
+
+  @Markup div<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("div", attributes, block)
+
+  @Markup dl<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("dl", attributes, block)
+
+  @Markup dt<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("dt", attributes, block)
+
+  @Markup em<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("em", attributes, block)
+
+  @Markup fieldset<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("fieldset", attributes, block)
+
+  @Markup figcaption<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("figcaption", attributes, block)
+
+  @Markup figure<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("figure", attributes, block)
+
+  @Markup footer<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("footer", attributes, block)
+
+  @Markup form<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("form", attributes, block)
+
+  @Markup h1<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("h1", attributes, block)
+
+  @Markup h2<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("h2", attributes, block)
+
+  @Markup h3<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("h3", attributes, block)
+
+  @Markup h4<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("h4", attributes, block)
+
+  @Markup h5<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("h5", attributes, block)
+
+  @Markup h6<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("h6", attributes, block)
+
+  @Markup head<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("head", attributes, block)
+
+  @Markup header<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("header", attributes, block)
+
+  @Markup html<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("html", attributes, block)
+
+  @Markup i<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("i", attributes, block)
+
+  @Markup label<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("label", attributes, block)
+
+  @Markup legend<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("legend", attributes, block)
+
+  @Markup li<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("li", attributes, block)
+
+  @Markup nav<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("nav", attributes, block)
+
+  @Markup ol<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("ol", attributes, block)
+
+  @Markup option<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("option", attributes, block)
+
+  @Markup p<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("p", attributes, block)
+
+  @Markup pre<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("pre", attributes, block)
+
+  @Markup script<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("script", attributes, block)
+
+  @Markup section<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("section", attributes, block)
+
+  @Markup select<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("select", attributes, block)
+
+  @Markup small<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("small", attributes, block)
+
+  @Markup span<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("span", attributes, block)
+
+  @Markup strong<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("strong", attributes, block)
+
+  @Markup style<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("style", attributes, block)
+
+  @Markup sub<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("sub", attributes, block)
+
+  @Markup summary<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("summary", attributes, block)
+
+  @Markup sup<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("sup", attributes, block)
+
+  @Markup table<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("table", attributes, block)
+
+  @Markup tbody<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("tbody", attributes, block)
+
+  @Markup td<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("td", attributes, block)
+
+  @Markup textarea<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("textarea", attributes, block)
+
+  @Markup tfoot<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("tfoot", attributes, block)
+
+  @Markup th<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("th", attributes, block)
+
+  @Markup thead<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("thead", attributes, block)
+
+  @Markup title<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("title", attributes, block)
+
+  @Markup tr<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("tr", attributes, block)
+
+  @Markup u<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("u", attributes, block)
+
+  @Markup ul<@E>(
+    attributes: List<Attribute> = [],
+    block: @Markup @E () -> Unit = () -> Unit,
+  ): Unit = element("ul", attributes, block)
+
+  // Elements that can't have anything in them.
+  @Markup br(attributes: List<Attribute> = []): Unit = element("br", attributes)
+  @Markup hr(attributes: List<Attribute> = []): Unit = element("hr", attributes)
+  @Markup input(attributes: List<Attribute> = []): Unit = element("input", attributes)
+  @Markup link(attributes: List<Attribute> = []): Unit = element("link", attributes)
+  @Markup meta(attributes: List<Attribute> = []): Unit = element("meta", attributes)
+}
